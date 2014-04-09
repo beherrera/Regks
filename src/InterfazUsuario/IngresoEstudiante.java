@@ -6,12 +6,16 @@
 
 package InterfazUsuario;
 
+import BL_IngresoEstudiante.Estudiante;
+import ADO.ManejadorArchivos;
+
 /**
  *
  * @author Administrador
  */
 public class IngresoEstudiante extends javax.swing.JFrame {
-
+    
+    ManejadorArchivos aEstudiante = new ManejadorArchivos();
     /**
      * Creates new form IngresoEstudiante
      */
@@ -148,13 +152,32 @@ public class IngresoEstudiante extends javax.swing.JFrame {
 
     private void jButton_CrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearActionPerformed
         // TODO add your handling code here:
-        
+        try{                    
+            if(validar()){
+                Estudiante estudiante = new Estudiante();
+                estudiante.setApellido1(jTextField_apellido1.getText());
+                estudiante.setApellido2(jTextField_apellido2.getText());
+                estudiante.setCodigo(jTextField_Codigo.getText());
+                estudiante.setIdentificación(jTextField_Identificacion.getText());
+                estudiante.setNombre(jTextField_Nombre1.getText());
+                estudiante.setOtrosNombres(jTextField_otrosNombres.getText());
+                estudiante.setPrograma(jTextField_programa.getText());   
+                aEstudiante.crearEstudiante(estudiante);
+            }
+            else
+            {
+                
+            }
+        }
+        catch(Exception ex) {
+            
+        }
     }//GEN-LAST:event_jButton_CrearActionPerformed
 
     public boolean validar()
     {
-        
-        return true;
+        return !jTextField_Codigo.getText().equals("") || !jTextField_Identificacion.getText().equals("") || !jTextField_Nombre1.getText().equals("") || !jTextField_apellido1.getText().equals("") || !jTextField_apellido2.getText().equals("") || !jTextField_otrosNombres.getText().equals("") || !jTextField_programa.getText().equals("");
+     
     }
     /**
      * @param args the command line arguments
